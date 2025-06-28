@@ -1,18 +1,19 @@
-import express from "express";
-import { signup, login, dashboard } from "../controllers/authController.js";
-import { authMiddleware } from "../middlewares/authMiddleware.js";
-import { roleMiddleware } from "../middlewares/roleMiddleware.js";
+import express from "express"
 
-const router = express.Router();
+import { authMiddleware } from "../middlewares/authMiddleware.js"
+import { roleMiddleware } from "../middlewares/roleMiddleware.js"
+import { signup, login, dashboard } from "../controllers/authController.js"
 
-router.post("/signup", signup);
-router.post("/login", login);
-router.get("/dashboard", authMiddleware, dashboard);
+const router = express.Router()
+
+router.post("/signup", signup)
+router.post("/login", login)
+router.get("/dashboard", authMiddleware, dashboard)
 router.get("/admin", authMiddleware, roleMiddleware(["admin"]), (req, res) => {
-  res.json({ message: "Welcome Admin" });
-});
+  res.json({ message: "Welcome Admin" })
+})
 router.get("/user", authMiddleware, roleMiddleware(["user"]), (req, res) => {
-  res.json({ message: "Welcome User" });
-});
+  res.json({ message: "Welcome User" })
+})
 
-export default router;
+export default router

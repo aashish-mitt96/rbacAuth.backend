@@ -9,8 +9,9 @@
     "skipLibCheck": true,
     "outDir": "dist",
     "resolveJsonModule": true,
-    "baseUrl": "./src"
+    "baseUrl": ".",
+    "typeRoots": ["./node_modules/@types", "./types"]
   },
-  "include": ["src"],
-  "exclude": ["node_modules"]
+  "include": ["*.ts", "**/*.ts"],
+  "exclude": ["node_modules", "dist"]
 }
